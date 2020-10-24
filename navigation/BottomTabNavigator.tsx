@@ -1,7 +1,8 @@
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
+import { Text, View } from "../components/Themed";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -9,9 +10,10 @@ import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
 import {
     BottomTabParamList,
-    TabOneParamList,
+    HomeNavigatorParamList,
     TabTwoParamList,
 } from "../types";
+import ProfilePicture from "../components/ProfilePicture";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -20,15 +22,15 @@ export default function BottomTabNavigator() {
 
     return (
         <BottomTab.Navigator
-            initialRouteName="TabOne"
+            initialRouteName="Home"
             tabBarOptions={{
                 activeTintColor: Colors[colorScheme].tint,
                 showLabel: false,
             }}
         >
             <BottomTab.Screen
-                name="TabOne"
-                component={TabOneNavigator}
+                name="Home"
+                component={HomeNavigator}
                 options={{
                     tabBarIcon: ({ color }) => (
                         <TabBarIcon name="md-home" color={color} />
@@ -36,11 +38,32 @@ export default function BottomTabNavigator() {
                 }}
             />
             <BottomTab.Screen
-                name="TabTwo"
+                name="Search"
                 component={TabTwoNavigator}
                 options={{
                     tabBarIcon: ({ color }) => (
-                        <TabBarIcon name="ios-code" color={color} />
+                        <TabBarIcon name="ios-search" color={color} />
+                    ),
+                }}
+            />
+            <BottomTab.Screen
+                name="Notification"
+                component={TabTwoNavigator}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <TabBarIcon
+                            name="ios-notifications-outline"
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <BottomTab.Screen
+                name="Message"
+                component={TabTwoNavigator}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <TabBarIcon name="ios-mail" color={color} />
                     ),
                 }}
             />
@@ -56,17 +79,42 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const HomeScreenStack = createStackNavigator<HomeNavigatorParamList>();
 
-function TabOneNavigator() {
+function HomeNavigator() {
     return (
-        <TabOneStack.Navigator>
-            <TabOneStack.Screen
-                name="TabOneScreen"
+        <HomeScreenStack.Navigator>
+            <HomeScreenStack.Screen
+                name="HomeScreen"
                 component={TabOneScreen}
-                options={{ headerTitle: "Tab One Title" }}
+                options={{
+                    headerTitleAlign: "center",
+                    headerRightContainerStyle: { marginRight: 10 },
+                    headerLeftContainerStyle: { marginLeft: 10 },
+
+                    headerTitle: () => (
+                        <Ionicons
+                            name="logo-twitter"
+                            size={30}
+                            color={Colors.light.tint}
+                        />
+                    ),
+                    headerRight: () => (
+                        <MaterialCommunityIcons
+                            name="star-four-points-outline"
+                            size={25}
+                            color={Colors.light.tint}
+                        />
+                    ),
+                    headerLeft: () => (
+                        <ProfilePicture
+                            image="https://pbs.twimg.com/profile_images/1311342687581138945/VRVIsJIv_200x200.jpg"
+                            size={40}
+                        />
+                    ),
+                }}
             />
-        </TabOneStack.Navigator>
+        </HomeScreenStack.Navigator>
     );
 }
 

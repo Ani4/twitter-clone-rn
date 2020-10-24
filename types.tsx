@@ -4,8 +4,6 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-    TabOne: undefined;
-    TabTwo: undefined;
     Home: undefined;
     Notification: undefined;
     Search: undefined;
@@ -18,4 +16,22 @@ export type HomeNavigatorParamList = {
 
 export type TabTwoParamList = {
     TabTwoScreen: undefined;
+};
+
+export type UserType = {
+    id: string;
+    username: string;
+    name: string;
+    image: string;
+};
+
+export type TweetType = {
+    id: string;
+    user: UserType;
+    createdAt: string;
+    content: string;
+    image: string;
+    numberOfComment: number;
+    numberOfRetweet: number;
+    numberOfLike: number;
 };

@@ -31,7 +31,7 @@ const MainContainer = ({ tweet }: MainContainerProps) => (
             </Text>
         </View>
         <View>
-            <Text style={styles.content} numberOfLines={6}>
+            <Text style={styles.content} numberOfLines={5}>
                 {tweet.content}
             </Text>
             {tweet.image ? (
@@ -65,11 +65,11 @@ const styles = StyleSheet.create({
         color: Colors.light.secondaryText,
     },
     content: {
-        marginTop: 5,
+        marginVertical: 5,
         lineHeight: 16,
     },
     image: {
-        marginVertical: 10,
+        marginVertical: 5,
         flex: 1,
         height: 200,
         resizeMode: "cover",

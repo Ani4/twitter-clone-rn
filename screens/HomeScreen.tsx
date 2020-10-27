@@ -1,14 +1,13 @@
 import * as React from "react";
 import { ScrollView, StyleSheet } from "react-native";
+import Feed from "../components/Feed";
 
 import { Text, View } from "../components/Themed";
-import Tweet from "../components/Tweet";
-import tweets from "../data/tweets";
 
 export type HomeScreenProps = {};
 const HomeScreen = ({}: HomeScreenProps) => (
     <ScrollView>
-        <Tweet tweet={tweets[0]} />
+        <Feed />
     </ScrollView>
 );
 

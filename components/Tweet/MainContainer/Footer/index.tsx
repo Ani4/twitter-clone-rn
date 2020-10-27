@@ -1,4 +1,10 @@
-import { MaterialCommunityIcons, MaterialIcons, SimpleLineIcons } from "@expo/vector-icons";
+import {
+    EvilIcons,
+    Feather,
+    MaterialCommunityIcons,
+    MaterialIcons,
+    SimpleLineIcons,
+} from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import Colors from "../../../../constants/Colors";
@@ -8,13 +14,13 @@ import { Text, View } from "../../../Themed";
 
 export type FooterProps = { tweet: TweetType };
 
-const Footer = ({tweet}: FooterProps) => {
+const Footer = ({ tweet }: FooterProps) => {
     return (
         <View style={styles.iconGroup}>
             <TouchableOpacity>
                 <View style={styles.iconInfo}>
-                    <MaterialCommunityIcons
-                        name="comment-outline"
+                    <Feather
+                        name="message-circle"
                         size={16}
                         color={Colors.light.secondaryText}
                     />
@@ -30,9 +36,9 @@ const Footer = ({tweet}: FooterProps) => {
             </TouchableOpacity>
             <TouchableOpacity>
                 <View style={styles.iconInfo}>
-                    <MaterialIcons
-                        name="loop"
-                        size={16}
+                    <MaterialCommunityIcons
+                        name="twitter-retweet"
+                        size={20}
                         color={Colors.light.secondaryText}
                     />
                     <Text
@@ -78,10 +84,6 @@ const Footer = ({tweet}: FooterProps) => {
 export default Footer;
 
 const styles = StyleSheet.create({
-    tweetHeader: {
-        flexDirection: "row",
-        paddingBottom: 5,
-    },
     iconGroup: {
         flexDirection: "row",
         justifyContent: "space-between",
